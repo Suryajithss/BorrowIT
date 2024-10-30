@@ -1,0 +1,39 @@
+/* Header Styling */
+        .header {
+            background-color: #ffc107;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #007BFF;
+        }

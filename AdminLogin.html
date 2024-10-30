@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+	<link rel="icon" href="Images/Logo/BorrowIT.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/AdminLogin.css" type="text/css">
+    <style>
+        /* Basic styles for the body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef; /* Light grey background for a clean look */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px; /* Padding around the page */
+            box-sizing: border-box; /* Adjust box model */
+        }
+
+        /* Styles for the login container */
+        .login-container {
+            background-color: #ffffff; /* White background for the login box */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            padding: 30px; /* Padding inside the login box */
+            width: 100%; /* Full width */
+            max-width: 400px; /* Maximum width for larger screens */
+        }
+
+        /* Styles for the heading */
+        .login-box h2 {
+            text-align: center; /* Center the heading */
+            color: #283C84; /* Dark blue color for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+            font-size: 24px; /* Font size for the heading */
+        }
+
+        /* Styles for form groups */
+        .form-group {
+            margin-bottom: 20px; /* Space between form groups */
+        }
+
+        /* Styles for labels */
+        .form-group label {
+            display: block; /* Block display for labels */
+            margin-bottom: 5px; /* Space below labels */
+            color: #333; /* Label color */
+            font-weight: bold; /* Bold labels */
+        }
+
+        /* Styles for input fields */
+        .form-group input {
+            width: 100%; /* Full width inputs */
+            padding: 12px; /* Padding inside inputs */
+            border: 1px solid #ced4da; /* Light border color */
+            border-radius: 5px; /* Rounded corners for inputs */
+            box-sizing: border-box; /* Adjust box model */
+            transition: border-color 0.3s; /* Transition for border color */
+        }
+
+        .form-group input:focus {
+            border-color: #283C84; /* Border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Styles for error messages */
+        .error-message {
+            color: red; /* Error message color */
+            font-size: 12px; /* Font size for error messages */
+            margin-top: 5px; /* Space above error messages */
+        }
+
+        /* Styles for the login button */
+        .login-btn {
+            background-color: #283C84; /* Button color */
+            color: white; /* Button text color */
+            padding: 12px; /* Padding inside button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width button */
+            font-size: 16px; /* Font size for button text */
+            transition: background-color 0.3s; /* Transition for background color */
+        }
+
+        .login-btn:hover {
+            background-color: #1e2a6a; /* Darker shade on hover */
+        }
+
+        /* Styling for the show password toggle */
+        .show-password {
+            display: flex; /* Flexbox for alignment */
+            align-items: center; /* Center vertically */
+            margin-top: 10px; /* Space above the toggle */
+        }
+
+        .show-password input[type="checkbox"] {
+            width: auto; /* Auto width for checkbox */
+            margin-right: 8px; /* Space to the right of checkbox */
+            accent-color: #283C84; /* Custom color for checkbox (for modern browsers) */
+        }
+
+        .show-password label {
+            color: #333; /* Label color for the checkbox */
+            font-size: 14px; /* Font size for label */
+        }
+
+        /* Styles for links */
+        p {
+            text-align: center; /* Center-aligning paragraph */
+            margin-top: 15px; /* Space above paragraph */
+        }
+
+        a {
+            color: #283C84; /* Link color */
+            text-decoration: none; /* No underline on link */
+            transition: color 0.3s; /* Transition for link color */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #1e2a6a; /* Darker link color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Admin LogIn</h2>
+            <form action="AdminLogin.php" method="post" onsubmit="validateForm(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="someone@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" name="pass" placeholder="Enter your password" required>
+                    <div class="show-password">
+                        <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()">
+                        <label for="show-password">Show Password</label>
+                    </div>
+                </div>
+                <div id="error-message" class="error-message"></div>
+                <button type="submit" class="login-btn">Log In</button>
+				
+				<!-- Adding a link to redirect to the User Login page -->
+				<p>Not an admin? <a href="login.html">Log in as User</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('pass');
+            const showPasswordCheckbox = document.getElementById('show-password');
+
+            // Toggle the type of the password field
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text'; // Show the password
+            } else {
+                passwordField.type = 'password'; // Hide the password
+            }
+        }
+    </script>
+</body>
+</html>

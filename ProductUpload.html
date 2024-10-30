@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 450px;
+            max-width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #283C84;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #555;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="file"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #7091E6;
+            box-shadow: 0 0 8px rgba(112, 145, 230, 0.5);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #7091E6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #283C84;
+            box-shadow: 0 4px 12px rgba(40, 60, 132, 0.4);
+        }
+
+        .error-message {
+            color: #D8000C;
+            background-color: #FFBABA;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const price = document.getElementById('price').value.trim();
+            const image = document.getElementById('image').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (!name || !price || !image || !description) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'All fields are required. Please fill out the entire form.';
+                return false;
+            }
+
+            if (isNaN(price) || parseFloat(price) <= 0) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please enter a valid price.';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+    <div class="form-container">
+		<h1>Add a New Product</h1>
+		<div id="error-message" class="error-message"></div>
+		<form action="insert_product.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+			<label for="name">Product Name:</label>
+			<input type="text" id="name" name="name" required>
+
+			<label for="price">Price (₹):</label>
+			<input type="number" id="price" name="price" step="0.01" required>
+
+			<label for="image">Product Image:</label>
+			<input type="file" id="image" name="images" accept="image/*" required>
+
+			<label for="type">Type:</label>
+			<select id="type" name="type" required>
+				<option value="" disabled selected>Select Type</option>
+				<option value="House">House</option>
+				<option value="Apartment">Apartment</option>
+				<option value="Household">Household Essential</option>
+				<!-- Add more options as needed -->
+			</select>
+
+			<label for="location">Location:</label>
+			<input type="text" id="location" name="location" placeholder="Enter the location" required>
+
+			<label for="description">Description:</label>
+			<textarea id="description" name="description" rows="5" required></textarea>
+
+			<button type="submit" class="submit-btn">Add Product</button>
+		</form>
+	</div>
+
+</body>
+</html>

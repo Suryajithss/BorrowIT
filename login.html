@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="icon" href="Images/Logo/BorrowIT.png" type="image/x-icon">
+	<style>
+		body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffffff, #fefbd8); /* Gradient from white to pastel yellow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #FFFFFF; /* White container background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #FFCC00; /* Yellow border */
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FFCC00; /* Yellow text for header */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #333; /* Dark text */
+    font-size: 0.9em;
+    display: block; /* Ensure labels take full width */
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Light input background */
+    color: #333; /* Dark text */
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FFCC00; /* Yellow border on focus */
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+.login-btn {
+    padding: 12px;
+    background-color: #FFCC00; /* Yellow background for button */
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF; /* White text */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%; /* Full width button */
+}
+
+.login-btn:hover {
+    background-color: #e6b800; /* Darker yellow on hover */
+    color: #fff; /* White text on hover */
+}
+
+.error-message {
+    color: #ff6666; /* Red error message */
+    font-size: 0.9em;
+    display: none; /* Initially hide the error message */
+    text-align: start;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.login-container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #333; /* Dark text */
+    font-size: 0.9em;
+}
+
+.login-container p a {
+    color: #FFCC00; /* Yellow link color */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Styling for the show password toggle */
+        .show-password {
+            display: flex; /* Flexbox for alignment */
+            align-items: center; /* Center vertically */
+            margin-top: 10px; /* Space above the toggle */
+        }
+
+        .show-password input[type="checkbox"] {
+            width: auto; /* Auto width for checkbox */
+            margin-right: 8px; /* Space to the right of checkbox */
+            accent-color: #283C84; /* Custom color for checkbox (for modern browsers) */
+        }
+
+        .show-password label {
+            color: #333; /* Label color for the checkbox */
+            font-size: 14px; /* Font size for label */
+        }
+	</style>
+    <script>
+        function validateForm(event) {
+            var errorMessage = document.getElementById("error-message");
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("pass").value;
+
+            if (!email || !password) {
+                errorMessage.style.display = "block";
+                errorMessage.innerText = "Please fill in all fields.";
+                event.preventDefault(); // Prevent form submission
+                return false;
+            } else {
+                errorMessage.style.display = "none"; // Hide error message
+                return true; // Allow form submission
+            }
+        }
+
+        
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('pass');
+            const showPasswordCheckbox = document.getElementById('show-password');
+
+            // Toggle the type of the password field
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text'; // Show the password
+            } else {
+                passwordField.type = 'password'; // Hide the password
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log In</h2>
+        <form action="login.php" method="post" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="someone@example.com" required>
+            </div>
+            <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" name="pass" placeholder="Enter your password" required>
+                    <div class="show-password">
+                        <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()">
+                        <label for="show-password">Show Password</label>
+                    </div>
+			</div>
+
+            <!-- Error message div -->
+            <div id="error-message" class="error-message" aria-live="polite">
+                <?php
+                // Show error message if the error parameter is set
+                if (isset($_GET['error'])) {
+                    echo "Invalid email or password. Please try again.";
+                }
+                ?>
+            </div>
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <p>New to BorrowIT? <a href="signup.html">Sign Up</a></p>
+    </div>
+</body>
+</html>

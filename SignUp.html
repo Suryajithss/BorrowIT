@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" href="BorrowIT.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* White background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-container {
+            background-color: #f5f5f5; /* Light gray background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFC107; /* Yellow heading */
+        }
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+            color: #333; /* Dark text for better readability */
+            font-size: 0.9em;
+        }
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #fff; /* White input background */
+            color: #333; /* Dark text */
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #FFC107; /* Yellow border on focus */
+            box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+        }
+        .signup-btn {
+            padding: 12px;
+            background-color: #FFC107; /* Yellow background */
+            border: none;
+            border-radius: 5px;
+            color: #fff; /* White text */
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .signup-btn:hover {
+            background-color: #e0a800; /* Darker yellow on hover */
+        }
+        .signup-container p {
+            text-align: center;
+            margin-top: 15px;
+            color: #333; /* Dark text */
+            font-size: 0.9em;
+        }
+        .signup-container p a {
+            color: #FFC107; /* Yellow links */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .signup-container p a:hover {
+            color: #e0a800; /* Darker yellow on hover */
+        }
+        .error-message {
+            color: #ff6666 !important; /* Red error message */
+            font-size: 0.9em;
+            display: none;
+            text-align: start;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            var phn = document.getElementById("phn").value;
+            var number = Number(phn);
+            if (Number.isInteger(number) && number.toString() === phn) {
+                console.log("The input is a valid integer.");
+            } else {
+                console.log("The input is not a valid.");
+            }
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confpassword").value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "block";
+                errorMessage.innerText = "Passwords do not match!";
+                event.preventDefault();
+                return false;
+            } else {
+                errorMessage.style.display = "none";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form action="SignUp.php" method="post" onsubmit="validateForm(event)">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="sname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="someone@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phn">Phone Number</label>
+                <input type="text" id="phn" name="phn" placeholder="1234567890" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" placeholder="" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="pass" placeholder="Password" required>
+            </div>
+            <div id="error-message" class="error-message" aria-live="polite"></div>
+            <div class="form-group">
+                <label for="confpassword">Confirm Password</label>
+                <input type="password" id="confpassword" name="confpassword" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Log In</a></p>
+    </div>
+</body>
+</html>

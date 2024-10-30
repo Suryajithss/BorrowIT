@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Account</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2b2b2b; /* Dark grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #f7f7f7;
+        }
+        .header {
+            width: 100%;
+            background-color: #666666; /* Grey header */
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+        .account-container {
+            background-color: #3a3a3a; /* Slightly lighter grey for the container */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+        .account-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #f7c02f; /* Shade of yellow */
+        }
+        .account-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .account-details .detail {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background-color: #4a4a4a; /* Slightly lighter grey */
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #5a5a5a; /* Darker grey border */
+        }
+        .account-details .detail label {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #ddd; /* Light grey text */
+        }
+        .account-details .detail input {
+            font-size: 1.1em;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #666;
+            background-color: #2b2b2b; /* Dark grey input background */
+            color: #f7f7f7;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .account-details .detail input:focus {
+            border-color: #f7c02f; /* Yellow border on focus */
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .buttons .btn {
+            padding: 12px 20px;
+            background-color: #f7c02f; /* Yellow for buttons */
+            border: none;
+            border-radius: 5px;
+            color: #333; /* Dark grey text */
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .buttons .btn:hover {
+            background-color: #d4a62b; /* Darker yellow on hover */
+            transform: translateY(-2px);
+        }
+        .buttons .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+        .buttons .btn[disabled] {
+            background-color: #999; /* Disabled state */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rental Service</h1>
+    </div>
+    <div class="account-container">
+        <h2>Edit Account Details</h2>
+        <form class="account-details">
+            <div class="detail">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required>
+            </div>
+            <div class="detail">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Doe" required>
+            </div>
+            <div class="detail">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+            </div>
+            <div class="detail">
+                <label for="phn">Phone Number</label>
+                <input type="text" id="phn" name="phn" placeholder="1234567890" required>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn">Save Changes</button>
+                <a href="account.php" class="btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        function logout() {
+            alert('Logging out...');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
